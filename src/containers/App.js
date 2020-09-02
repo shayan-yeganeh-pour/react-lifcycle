@@ -40,14 +40,19 @@ class App extends Component {
   }
 
 
+ 
+
+
+
+
   nameChangedHandler = (event, id) => {
     const personIndex = this.state.persons.findIndex(p => {
       return p.id === id;
-    });
+    })
 
     const person = {
       ...this.state.persons[personIndex]
-    };
+    }
 
     // const person = Object.assign({}, this.state.persons[personIndex]);
 
@@ -95,6 +100,7 @@ class App extends Component {
           persons={this.state.persons}
           toggle={this.togglePersonsHandler}
           showPersons={this.state.showPersons}
+          
         />
         {persons}
       </div>
