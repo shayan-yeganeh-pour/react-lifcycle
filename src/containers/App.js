@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
-
 import './App.css'
 
 
@@ -15,8 +14,11 @@ class App extends Component {
    constructor(props) {
     super(props)
     console.log('[App.js] constructor')
-   }
 
+   }
+   
+
+  
 
   state = {
     persons: [
@@ -25,8 +27,11 @@ class App extends Component {
       { id: 'asdf11', name: 'Stephanie', age: 26 }
     ],
     otherState: 'some other value',
-    showPersons: false
+    showPersons: false,
+    showCockpit: true
   };
+
+ 
 
 
   static getDerivedStateFromProps(props, state) {
@@ -40,9 +45,22 @@ class App extends Component {
 
   componentDidMount() {
     console.log("[App.js] componentDidMount")
+  } 
+   
+
+  shouldComponentUpdate(nextProps , nextState) {
+    console.log("[App.js] shouldComponentUpdate");
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log("[App.js] componentDidUpdate")
   }
 
 
+ componentWillUnmount() {
+   console.log("[App.js] componentWillMount")
+ }
  
 
   nameChangedHandler = (event, id) => {
@@ -84,6 +102,7 @@ class App extends Component {
       persons = (
         <div>
           <Persons 
+          personsLength={this.state.persons.length}
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler} />
@@ -96,12 +115,16 @@ class App extends Component {
 
     return (
       <div className="app">
-        <Cockpit showPersons={this.state.showPersons}
+        <button onClick={()=> this.setState({showCockpit: false})}>removeCockpit</button>
+        <button onClick={()=> this.setState({showCockpit: true})}>showCockpit</button>
+        {this.state.showCockpit ? <Cockpit 
+          showPersons={this.state.showPersons}
           persons={this.state.persons}
           toggle={this.togglePersonsHandler}
           showPersons={this.state.showPersons}
+          title={this.props.useTitle}
           
-        />
+    /> : null }
         {persons}
       </div>
     );
