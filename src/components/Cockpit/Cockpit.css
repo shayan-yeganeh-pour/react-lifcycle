@@ -7,25 +7,23 @@
     color: green;
   }
   
-  .Cockpit button {
+  .Cockpit #b1 {
     background-color: green;
     color: white;
     font: inherit;
-    border: 1px solid blue;
-    padding: 8px;
+  
+    padding: 10.5px;
     cursor: pointer;
+    outline: none;
+    margin: 0 2px;
+    transition: .5s ease-in-out;
   }
   
-  .Cockpit button:hover {
-    background-color: lightgreen;
+  .Cockpit #b1:hover {
+    
+     box-shadow: 0px 0px 30px rgb(238, 241, 5);
     color: black;
   }
   
-  .Cockpit button.Red {
-    background-color: red;
-  }
   
-  .Cockpit button.Red:hover {
-    background-color: salmon;
-  }
   

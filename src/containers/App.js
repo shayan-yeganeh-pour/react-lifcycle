@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
+import withClass from '../hoc/withClass'
+import Aux from  '../hoc/Auxilliary'
+import classes from './App.css'
 import './App.css'
 
 
@@ -28,7 +31,9 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    countNumber: 0,
+    authentication: false
   };
 
  
@@ -86,7 +91,12 @@ class App extends Component {
     // const persons = this.state.persons.slice();
     const persons = [...this.state.persons];
     persons.splice(personIndex, 1);
-    this.setState({ persons: persons });
+    this.setState((prevState , props)=>{
+      return  {
+        persons: persons,
+        countNumber: prevState.countNumber + 1
+      }
+    });
   };
 
   togglePersonsHandler = () => {
@@ -103,6 +113,7 @@ class App extends Component {
         <div>
           <Persons 
           personsLength={this.state.persons.length}
+          authen={this.state.authentication}
           persons={this.state.persons}
           clicked={this.deletePersonHandler}
           changed={this.nameChangedHandler} />
@@ -123,6 +134,7 @@ class App extends Component {
           toggle={this.togglePersonsHandler}
           showPersons={this.state.showPersons}
           title={this.props.useTitle}
+          authentication={()=> this.setState({authentication: true})}
           
     /> : null }
         {persons}
