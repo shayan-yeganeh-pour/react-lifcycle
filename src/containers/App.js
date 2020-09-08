@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 import Persons from '../components/Persons/Persons'
 import Cockpit from '../components/Cockpit/Cockpit'
-import withClass from '../hoc/withClass'
+//import withClass from '../hoc/withClass'
 import Aux from  '../hoc/Auxilliary'
 import classes from './App.css'
 import './App.css'
